@@ -53,10 +53,10 @@ int main(int argc, char *argv[]) {
 			while (argument != NULL && cmdArgc < 256) {
 				cmdArgv[cmdArgc] = argument;
 				cmdArgc++;
-				argument = strtok_r(command, " ", &commandTokenPtr);
+				argument = strtok_r(NULL, " ", &commandTokenPtr);
 			}
 			
-			command = strtok_r(line, ";\n", &lineTokenPtr);
+			command = strtok_r(NULL, ";\n", &lineTokenPtr);
 			
 			// we got an empty command
 			if (cmdArgc == 0)
