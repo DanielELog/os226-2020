@@ -62,9 +62,9 @@ int main(int argc, char *argv[]) {
 			if (cmdArgc == 0)
 				continue;
 			
-			if (strcmp(cmdArgv[0], ECHO_NAME))
+			if (!strcmp(cmdArgv[0], ECHO_NAME))
 				cmdToCall = &echo;
-			else if (strcmp(cmdArgv[0], RETCODE_NAME))
+			else if (!strcmp(cmdArgv[0], RETCODE_NAME))
 				cmdToCall = &retcode;
 			else
 				printf("Unknown command: %s\n", cmdArgv[0]);
