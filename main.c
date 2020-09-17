@@ -8,8 +8,8 @@ int lastReturn = 0;
 int LINE_LIMIT = 256;
 int ARG_LIMIT = 256;
 
-char *CMD_DELIMETERS = ";\n";
-char *ARG_DELIMETERS = " ";
+//char *CMD_DELIMETERS = ";\n";
+//char *ARG_DELIMETERS = " ";
 
 char *RETCODE_NAME = "retcode";
 char *ECHO_NAME = "echo";
@@ -45,18 +45,18 @@ int main(int argc, char *argv[]) {
 	int (*cmdToCall)(int, char **);
 	
 	while (fgets(line, LINE_LIMIT, stdin)) {
-		command = strtok_r(line, CMD_DELIMETERS, &lineTokenPtr);
+		command = strtok_r(line, ";\n", &lineTokenPtr);
 		while (command != NULL) {
 			cmdArgc = 0;
 			
-			argument = strtok_r(command, ARG_DELIMETERS, &commandTokenPtr);
+			argument = strtok_r(command, " ", &commandTokenPtr);
 			while (argument != NULL && cmdArgc < 256) {
 				cmdArgv[cmdArgc] = argument;
 				cmdArgc++;
-				argument = strtok_r(command, ARG_DELIMETERS, &commandTokenPtr);
+				argument = strtok_r(command, " ", &commandTokenPtr);
 			}
 			
-			command = strtok_r(line, CMD_DELIMETERS, &lineTokenPtr);
+			command = strtok_r(line, ";\n", &lineTokenPtr);
 			
 			// we got an empty command
 			if (cmdArgc == 0)
