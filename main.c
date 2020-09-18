@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
 		command = strtok_r(line, ";\n", &lineTokenPtr);
 		while (command != NULL) {
 			cmdArgc = 0;
+			cmdToCall = NULL;
 			
 			argument = strtok_r(command, " ", &commandTokenPtr);
 			while (argument != NULL && cmdArgc < 256) {
@@ -69,7 +70,8 @@ int main(int argc, char *argv[]) {
 			else
 				printf("Unknown command: %s\n", cmdArgv[0]);
 			
-			lastReturn = cmdToCall(cmdArgc, cmdArgv);
+			if (cmdToCall != NULL)
+				lastReturn = cmdToCall(cmdArgc, cmdArgv);
 		}
 	}
 	
